@@ -10,6 +10,8 @@
 @endsection
 
 @section('content')
+    @include('partials.message')
+
     <table id="table" class="table table-striped-columns table-hover table-borderless align-middle">
         <thead class="table-dark">
             <tr>
@@ -38,7 +40,9 @@
                     <td>{{ $product->created_at }}</td>
                     <td>{{ $product->updated_at }}</td>
                     <td>
-                        <a href=" " class="btn btn-outline-warning btn-sm btn-rounded">Edit</a>
+                        <a href="{{ route('dashboard.products.edit', ['id' => $product->id]) }}"
+                            class="btn btn-outline-warning btn-sm btn-rounded">Edit</a>
+                            
                         <a href="" class="btn btn-outline-danger btn-sm btn-rounded">Delete</a>
                     </td>
 

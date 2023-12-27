@@ -22,3 +22,10 @@ Route::get('/dashboard' , [DashboardController::class, 'index'])->name('dashboar
 Route::get('/dashboard/products' , [ProductController::class, 'index'])->name('dashboard.products.index');
 Route::get('/dashboard/products/create' , [ProductController::class, 'create'])->name('dashboard.products.create');
 Route::post('/dashboard/products/store' , [ProductController::class, 'store'])->name('dashboard.products.store');
+Route::get('/dashboard/products/{id}/edit' , [ProductController::class, 'edit'])->name('dashboard.products.edit');
+Route::post('/dashboard/products/{id}/update' , [ProductController::class, 'edit'])->name('dashboard.products.edit');
+
+
+// Put    => replaces all current representations of the target resource with the request payload.
+// Patch  => applies partial modifications to a resource.
+// delete => deletes the specified resource.
