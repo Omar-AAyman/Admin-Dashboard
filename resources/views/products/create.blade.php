@@ -11,83 +11,121 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('dashboard.products.store') }}" method="post">
+        <form action="{{ route('dashboard.products.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="card-body">
                 <div class="form-row my-3">
                     <div class="col-6">
                         <label for="name_en">English Name</label>
-                        <input type="text" class="form-control" id="name_en" name="name_en"
+                        <input value="{{ old('name_en') }}"type="text" class="form-control" id="name_en" name="name_en"
                             placeholder="Enter product's name in EN">
+                        @error('name_en')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-6">
                         <label for="name_ar">Arabic Name</label>
-                        <input type="text" class="form-control" id="name_ar" name="name_ar"
+                        <input value="{{ old('name_ar') }}"type="text" class="form-control" id="name_ar" name="name_ar"
                             placeholder="Enter product's name in AR">
+                        @error('name_ar')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-row my-3">
                     <div class="col-4">
                         <label for="code">Product's Code</label>
-                        <input type="text" class="form-control" id="code" name="code"
+                        <input value="{{ old('code') }}"type="text" class="form-control" id="code" name="code"
                             placeholder="Enter product's unique code">
+                        @error('code')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-4">
                         <label for="quantity">Quantity</label>
-                        <input type="text" class="form-control" id="quantity" name="quantity"
-                            placeholder="Enter product's available quantity">
+                        <input value="{{ old('quantity') }}"type="number" class="form-control" id="quantity"
+                            name="quantity" placeholder="Enter product's available quantity">
+                        @error('quantity')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-4">
                         <label for="price">Price</label>
-                        <input type="text" class="form-control" id="price" name="price"
+                        <input value="{{ old('price') }}"type="number" class="form-control" id="price" name="price"
                             placeholder="Enter product's price">
+                        @error('price')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-row my-3">
                     <div class="col-4">
                         <label for="status">Status</label>
-                        <select name="status" id="status" class="form-control">
-                            @foreach ($statuses as $value => $status)
-                                <option value="{{ $value }}">{{ $status }}</option>
+                        <select value="{{ old('status') }}" name="status" id="status" class="form-control">
+                            @foreach ($statuses as $key => $status)
+                                <option @selected(old('status') == $key) value="{{ $key }}">{{ $status }}
+                                </option>
                             @endforeach
                         </select>
+                        @error('status')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-4">
-                        <label for="brands">Brands</label>
+                        <label for="brand_id">Brands</label>
                         <select name="brand_id" id="brand_id" class="form-control">
                             <option value="">No Brand</option>
                             @foreach ($brands as $brand)
-                                <option value="{{ $brand->id }}">{{ $brand->name_en . '-' . $brand->name_ar }}</option>
+                                <option @selected(old('brand_id') == $brand->id) value="{{ $brand->id }}">
+                                    {{ $brand->name_en . ' - ' . $brand->name_ar }}</option>
                             @endforeach
                         </select>
+                        @error('brand_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-4">
-                        <label for="sub_categorie_id">Sub Catrogries</label>
-                        <select name="sub_categorie_id" id="sub_categorie_id" class="form-control">
+                        <label for="sub_category_id">Sub Catrogries</label>
+                        <select name="sub_category_id" id="sub_category_id" class="form-control">
                             @foreach ($sub_categories as $sub_category)
-                                <option value="{{ $sub_category->id }}">
-                                    {{ $sub_category->name_en . '-' . $sub_category->name_ar }}</option>
+                                <option @selected(old('sub_category_id') == $sub_category->id) value="{{ $sub_category->id }}">
+                                    {{ $sub_category->name_en . ' - ' . $sub_category->name_ar }}</option>
                             @endforeach
                         </select>
+                        @error('sub_category_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="form-row my-3">
                     <div class="col-6">
                         <label for="desc_en">Details In English</label>
-                        <textarea name="desc_en" id="desc_en" class="form-control" cols="30" rows="10"></textarea>
+                        <textarea name="desc_en" id="desc_en" class="form-control" cols="30" rows="10">{{ old('desc_en') }}</textarea>
+                        @error('desc_en')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-6">
                         <label for="desc_ar">Details In Arabic</label>
-                        <textarea name="desc_ar" id="desc_ar" class="form-control" cols="30" rows="10"></textarea>
+                        <textarea name="desc_ar" id="desc_ar" class="form-control" cols="30" rows="10">{{ old('desc_ar') }}</textarea>
+                        @error('desc_ar')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="col-2">
-                        <label for="upload" >
-                        <img class="w-50"  src="{{ asset('assets/images/3616929.png') }}" style="cursor: pointer" >
-                    </label>
-                    <input type="file" name="upload" id="upload" class="d-none">
+                    <div class="col-4">
+                        <h4>Upload Product's Image</h4>
+                        <label for="image">
+                            <img id="uploadImg" class="w-50" src="{{ asset('assets/images/3616929.png') }}"
+                                style="cursor: pointer">
+                        </label>
+                        <input type="file" name="image" id="image" class="d-none" onchange="loadFile(event)">
+                        @error('image')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -95,8 +133,8 @@
             <!-- /.card-body -->
 
             <div class="card-footer">
-                <button type="button" class="btn btn-primary  rounded">Create</button>
-                <button type="button" class="btn btn-success  rounded">Create & Return Back</button>
+                <button class="btn btn-primary  rounded">Create</button>
+                <button class="btn btn-success  rounded">Create & Return Back</button>
             </div>
         </form>
     </div>
@@ -105,4 +143,13 @@
 
 
 @section('scripts')
+    <script>
+        var loadFile = function(event) {
+            var output = document.getElementById('uploadImg');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) //free memory
+            }
+        };
+    </script>
 @endsection

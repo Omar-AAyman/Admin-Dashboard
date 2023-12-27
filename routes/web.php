@@ -21,4 +21,4 @@ Route::get('/', function () {
 Route::get('/dashboard' , [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/dashboard/products' , [ProductController::class, 'index'])->name('dashboard.products.index');
 Route::get('/dashboard/products/create' , [ProductController::class, 'create'])->name('dashboard.products.create');
-Route::get('/dashboard/products/store' , [ProductController::class, 'store'])->name('dashboard.products.store');
+Route::post('/dashboard/products/store' , [ProductController::class, 'store'])->name('dashboard.products.store');
