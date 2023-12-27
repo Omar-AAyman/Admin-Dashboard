@@ -5,7 +5,7 @@
 @endsection
 @section('content')
 
-@include('partials.message')
+    @include('partials.message')
 
     <!-- general form elements -->
     <div class="card col-12 card-warning">
@@ -15,14 +15,17 @@
         <!-- /.card-header -->
 
         <!-- form start -->
-        <form action="{{ route('dashboard.products.update') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.products.update', ['id' => $product->id]) }}" method="post"
+            enctype="multipart/form-data">
+            @method('put')
+
             @csrf
             <div class="card-body">
                 <div class="form-row my-3">
                     <div class="col-6">
                         <label for="name_en">English Name</label>
-                        <input value="{{ $product->name_en }}" type="text" class="form-control" id="name_en" name="name_en"
-                            placeholder="Enter product's name in EN">
+                        <input value="{{ $product->name_en }}" type="text" class="form-control" id="name_en"
+                            name="name_en" placeholder="Enter product's name in EN">
                         @error('name_en')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -123,7 +126,7 @@
                     <div class="col-4">
                         <h4>Upload Product's Image</h4>
                         <label for="image">
-                            <img id="uploadImg" class="w-50" src="{{ asset('assets/images/products/'.$product->image) }}"
+                            <img id="uploadImg" class="w-50" src="{{ asset('assets/images/products/' . $product->image) }}"
                                 style="cursor: pointer">
                         </label>
                         <input type="file" name="image" id="image" class="d-none" onchange="loadFile(event)">
@@ -137,8 +140,8 @@
             <!-- /.card-body -->
 
             <div class="card-footer">
-                <button name="redirect" value="index" class="btn btn-primary  rounded">Create</button>
-                <button name="redirect" value="back" class="btn btn-success  rounded">Create & Return Back</button>
+                <button name="redirect" value="index" class="btn btn-warning  rounded">Update</button>
+                <button name="redirect" value="back" class="btn btn-success  rounded">Cancel</button>
             </div>
         </form>
     </div>

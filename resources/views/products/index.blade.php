@@ -42,8 +42,15 @@
                     <td>
                         <a href="{{ route('dashboard.products.edit', ['id' => $product->id]) }}"
                             class="btn btn-outline-warning btn-sm btn-rounded">Edit</a>
+
+                            <form action="{{ route('dashboard.products.destroy', ['id' => $product->id]) }}" class="d-inline"
+                            method="post"> 
+                            @csrf
+                            @method('DELETE')
+
+                            <button class="btn btn-outline-danger btn-sm btn-rounded"> Delete</button>
                             
-                        <a href="" class="btn btn-outline-danger btn-sm btn-rounded">Delete</a>
+                        </form>
                     </td>
 
                 </tr>
