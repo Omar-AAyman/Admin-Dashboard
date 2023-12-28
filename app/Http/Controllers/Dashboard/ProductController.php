@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
+use App\Http\Traits\ApiTrait;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+
 
 class ProductController extends Controller
 {
+    use ApiTrait;
     public const STATUSES = ['Not Active', 'Active'];
     public const MAX_UPLOAD_SIZE = 1024;  //1024kb
     public const AVAILABLE_EXTENSIONS = ['png', 'jpg', 'jpeg'];
@@ -21,7 +22,7 @@ class ProductController extends Controller
 
         //Check if request wants a JSON file.. 
         if ($request->wantsJson()) {
-            return response()->json(compact('products'));
+            return $this->data(compact('products'));
         }
         //Return ('products.index')'s view with 'products'. to view all products there!
         return view('products.index', compact('products'));
@@ -36,7 +37,7 @@ class ProductController extends Controller
 
         //Check if request wants a JSON file.. 
         if ($request->wantsJson()) {
-            return response()->json(compact('brands', 'sub_categories'));
+            return $this->data(compact('brands', 'sub_categories'));
         }
 
         //Return ('products.create')'s view with 'brands', 'sub_categories' ,'statuses'. to create a new Item there!
@@ -83,7 +84,7 @@ class ProductController extends Controller
 
         //Check if request wants a JSON file.. 
         if ($request->wantsJson()) {
-            return response()->json(['success' => true, 'msg' => 'Product has been Created Successfully'], 201);
+            return $this->successResponse("Product has been Created Successfully");
         }
 
         if ($request->has('redirect') && $request['redirect'] == 'index') {
@@ -114,7 +115,7 @@ class ProductController extends Controller
 
         //Check if request wants a JSON file.. 
         if ($request->wantsJson()) {
-            return response()->json(compact('product', 'brands', 'sub_categories'));
+            return $this->data(compact('product', 'brands', 'sub_categories'));
         }
         //Return ('products.edit')'s view with 'product', 'brands', 'sub_categories' ,'statuses'.
         return view('products.edit', compact('product', 'brands', 'sub_categories'))->with('statuses', self::STATUSES);
@@ -169,7 +170,7 @@ class ProductController extends Controller
 
         //Check if request wants a JSON file.. 
         if ($request->wantsJson()) {
-            return response()->json(['success' => true, 'msg' => 'Product has been Updated Successfully'], 200);
+            return $this->successResponse("Product has been Updated Successfully");
         }
 
         // If user chooses (UPDATE) will be Redirected to all products page with a flash message ('Success') after updating this product successfully
@@ -199,7 +200,7 @@ class ProductController extends Controller
 
 
         if ($request->wantsJson()) {
-            return response()->json(['success' => true, 'msg' => 'Product has been Deleted Successfully'], 200);
+            return $this->successResponse("Product has been Deleted Successfully");
         }
         // Delete the product and be Redirected back to all products page with a flash message ('Success')
         return redirect()->back()->with('success', 'The Product has been Deleted Successfully');
