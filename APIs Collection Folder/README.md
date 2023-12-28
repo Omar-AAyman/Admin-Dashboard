@@ -4,4 +4,4 @@ https://web.postman.co/workspace/My-Workspace~08441961-c45a-46d5-83dc-65d2be5779
 ..............................................................................................................................................................................................
 
 
-This is a file for all CRUD operations using laravel apis on E-commerce dashboard website
+This is a file for all CRUD operations using Laravel apis on E-commerce dashboard website
