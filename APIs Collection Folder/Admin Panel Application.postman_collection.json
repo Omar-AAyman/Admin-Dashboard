@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "204ce4af-c0a2-4bee-a8a8-5681297d747b",
+		"name": "Admin Panel Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21260297"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "All Products",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/dashboard/products/index",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"dashboard",
+								"products",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/dashboard/products/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"dashboard",
+								"products",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Edit",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/dashboard/products/34/edit",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"dashboard",
+								"products",
+								"34",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Store",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name_en",
+									"value": "New Product",
+									"type": "text"
+								},
+								{
+									"key": "name_ar",
+									"value": "منتج جديد",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "3210",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "120",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "254132",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"description": "1=> Active , 0=> Not Active",
+									"type": "text"
+								},
+								{
+									"key": "brand_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "sub_category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "desc_ar",
+									"value": "شيسشسيشسيشسي",
+									"type": "text"
+								},
+								{
+									"key": "desc_en",
+									"value": "asdafadfasd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/dashboard/products/store",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"dashboard",
+								"products",
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name_en",
+									"value": "New Product",
+									"type": "text"
+								},
+								{
+									"key": "name_ar",
+									"value": "منتج جديد",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "3210",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "2541",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"description": "1=> Active , 0=> Not Active",
+									"type": "text"
+								},
+								{
+									"key": "brand_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "sub_category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "desc_ar",
+									"value": "شيسشسيشسيشسي",
+									"type": "text"
+								},
+								{
+									"key": "desc_en",
+									"value": "asdafadfasd",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Omar/Desktop/photo_2022-12-20_21-31-17.jpg"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/dashboard/products/23/update",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"dashboard",
+								"products",
+								"23",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Delete",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/dashboard/products/22/destroy",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"dashboard",
+								"products",
+								"22",
+								"destroy"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": []
+		}
+	]
+}

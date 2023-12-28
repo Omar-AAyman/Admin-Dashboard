@@ -19,13 +19,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard' , [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/dashboard/products' , [ProductController::class, 'index'])->name('dashboard.products.index');
-Route::get('/dashboard/products/create' , [ProductController::class, 'create'])->name('dashboard.products.create');
-Route::post('/dashboard/products/store' , [ProductController::class, 'store'])->name('dashboard.products.store');
-Route::get('/dashboard/products/{id}/edit' , [ProductController::class, 'edit'])->name('dashboard.products.edit');
-Route::put('/dashboard/products/{id}/update' , [ProductController::class, 'update'])->name('dashboard.products.update');
-Route::delete('/dashboard/products/{id}/destroy' , [ProductController::class, 'destroy'])->name('dashboard.products.destroy');
+Route::prefix('/dashboard')->as('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index']);
+
+    Route::prefix('/products')->controller(ProductController::class)->as('.products')->group(function () {
+        Route::get('/index', 'index')->name('.index');
+        Route::get('/create', 'create')->name('.create');
+        Route::post('/store', 'store')->name('.store');
+
+        Route::prefix('/{id}')->group(function () {
+            Route::get('/edit', 'edit')->name('.edit');
+            Route::put('/update', 'update')->name('.update');
+            Route::delete('/destroy', 'destroy')->name('.destroy');
+        });
+    });
+});
 
 
 // Put    => replaces all current representations of the target resource with the request payload.
