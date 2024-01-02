@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -19,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('/dashboard')->as('dashboard')->group(function () {
+Route::prefix('/dashboard')->as('dashboard')->middleware('verified')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
 
     Route::prefix('/products')->controller(ProductController::class)->as('.products')->group(function () {
@@ -39,3 +40,9 @@ Route::prefix('/dashboard')->as('dashboard')->group(function () {
 // Put    => replaces all current representations of the target resource with the request payload.
 // Patch  => applies partial modifications to a resource.
 // delete => deletes the specified resource.
+
+
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

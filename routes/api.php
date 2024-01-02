@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Apis\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\ProductController;
@@ -34,4 +35,8 @@ Route::prefix('/dashboard')->as('dashboard')->group(function () {
             Route::delete('/destroy', 'destroy');
         });
     });
+});
+
+Route::prefix('users')->group(function(){
+    Route::post('/register',RegisterController::class);
 });
